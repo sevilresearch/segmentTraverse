@@ -226,7 +226,7 @@ class PathingProcessor():
                 positivePositionSum = 0
                 positiveCount = 0
 
-                """
+
                 # Find starting pixel
                 for xPosition in range(leftBound, rightBound) :
                     if image[startY][xPosition] == pathingAreaValue:
@@ -238,7 +238,7 @@ class PathingProcessor():
                     
             else:
                 continue
-                """
+                
             startX = math.floor(image.shape[1]/2)
 
             while image[startY][startX] != pathingAreaValue:
