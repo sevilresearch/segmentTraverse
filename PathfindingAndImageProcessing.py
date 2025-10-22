@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from skimage.draw import line
 
-class PathingProcessor():
+class PathingProcessor:
 
     def calculatePathingAreaFromTraversableArea(self, traversabilityImage) :
 
