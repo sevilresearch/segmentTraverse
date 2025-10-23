@@ -4,7 +4,14 @@ Our goal is to segment an image of an outdoor off road location into traversable
 The steps to run these files and view the results yourself are listed below. These are subject to change as research progresses.
 
 Version 1.0: 
-Download Files within the Working Code branch, as these are the most up to date python files.
+We used the PyCharm IDE to work on these files, and the steps will reference this IDE.
 
-Download images and store them within this file path( ), or edit line ___ to the path desired. 
-  we used this dataset and these images to conduct our tests. 
+1. Download Files from GitHub.
+
+2. You will need to create a folder called PyTorchSegmentation (Or another name you will remember). This folder should hold other folders titled ModelSaves, Segmentation, TAData, and Rellis3D.
+   a. Place DeepLabV3 file in ModelSaves and unzip the folder titled 
+     After you create these folders, you will need to edit the file paths in these files. Below is a list of each line that needs to edited in each file, and what to change it to.
+
+     
+
+
