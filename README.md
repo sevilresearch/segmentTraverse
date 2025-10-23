@@ -9,8 +9,10 @@ We used the PyCharm IDE to work on these files, and the steps will reference thi
 1. Download Files from GitHub.
 
 2. You will need to create a folder called PyTorchSegmentation (Or another name you will remember). This folder should hold other folders titled ModelSaves, Segmentation, TAData, and Rellis3D.
+
    a. Place DeepLabV3 file in ModelSaves and unzip the folder titled 
-     After you create these folders, you will need to edit the file paths in these files. Below is a list of each line that needs to edited in each file, and what to change it to.
+
+   b. After you create these folders, you will need to edit the file paths in these files. Below is a list of each line that needs to edited in each file, and what to change it to.
 
      
 
