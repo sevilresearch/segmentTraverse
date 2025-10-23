@@ -14,8 +14,8 @@ from PathingProcessing import PathingProcessor
 
 dataset = "Rellis3D"
 
-modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
-segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
+modelSavesPath = "C:/Users/maste/Desktop/PyTorchSegmentation/ModelSaves/"
+segmentationsPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Segmentations/"
 imageSize = (1200, 1920)
 imageResize = (512, 1024)
 #imageResize = (256, 512)
@@ -46,7 +46,7 @@ numClasses = 0
 testDataset = None
 
 if dataset == "Rellis3D":
-    datasetPath = "C:/Python/PyTorchSegmentation/Datasets/Rellis3D/"
+    datasetPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Datasets/Rellis3D/"
     numClasses = 19
     testDataset = Rellis3D(datasetPath, split="val", transform=normalizeTransform, target_transform=resizeTransform)
 

@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 #dataset = "Cityscapes"
 dataset = "Rellis3D"
 
-modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
-segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
+modelSavesPath = "C:/Users/maste/Desktop/PyTorchSegmentation/ModelSaves/"
+segmentationsPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Segmentations/"
 imageResize = (256, 512)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -36,12 +36,12 @@ numClasses = 0
 testDataset = None
 
 if dataset == "Cityscapes":
-    datasetPath = "C:/Python/PyTorchSegmentation/Datasets/Cityscapes/"
+    datasetPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Datasets/Cityscapes/"
     numClasses = 34
     testDataset = datasets.Cityscapes(datasetPath, mode="fine", split="val", target_type="semantic", transform=normalizeTransform, target_transform=resizeTransform)
 
 elif dataset == "Rellis3D":
-    datasetPath = "C:/Python/PyTorchSegmentation/Datasets/Rellis3D/Images/"
+    datasetPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Datasets/Rellis3D/Images/"
     numClasses = 19
     testDataset = Rellis3D(datasetPath, split="val", transform=normalizeTransform, target_transform=resizeTransform)
 

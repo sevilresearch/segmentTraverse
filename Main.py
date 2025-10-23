@@ -14,8 +14,8 @@ import floodfill
 from PathfindingAndImageProcessing import PathingProcessor
 
 dataset = "Rellis3D"
-modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
-segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
+modelSavesPath = "C:/Users/maste/Desktop/PyTorchSegmentation/ModelSaves/"
+segmentationsPath = "C:/Users/maste/Destop/PyTorchSegmentation/Segmentations/"
 imageSize = (1200, 1920)
 imageResize = (640, 1024)
 # imageResize = (256, 512)
@@ -45,7 +45,7 @@ numClasses = 0
 testDataset = None
 
 if dataset == "Rellis3D":
-    datasetPath = "C:/Python/PyTorchSegmentation/DataSets/Rellis3D/"
+    datasetPath = "C:/User/maste/Desktop/PyTorchSegmentation/Rellis3D/"
     numClasses = 19
     testDataset = Rellis3D(datasetPath, split = "val",
                            transform=normalizeTransform, target_transform=resizeTransform)
@@ -224,7 +224,7 @@ for runksize in kvals:
             cumulativePathingCalculationTime += time.time() - pathingStart
             totalPathLength += pathLength
             totalNumPaths += numPaths
-            with open(('C:/Python/PyTorchSegmentation/TAData/' + str(rundescriptor_abrv) + '.txt'), 'a') as DataTA:
+            with open(('C:/Users/maste/Desktop/PyTorchSegmentation/TAData/' + str(rundescriptor_abrv) + '.txt'), 'a') as DataTA:
                 DataTA.writelines(','.join([str(imagesTestedName), str(pathLength), str(individualTime), str(individualPathTime)]))
                 #DataTA.writelines('.join([operation, element, str(runksize), str(AvgLength), str(overallTime), tr(cumulativePathingCalculationTime)]))
                 DataTA.write('\n')
@@ -262,7 +262,7 @@ for runksize in kvals:
         averageTime = overallTime / (imagesTested + 1)
         averagePathTime = cumulativePathingCalculationTime / (imagesTested + 1)
 
-        with open(("C:/Python/PyTorchSegmentation/TAData/" + str(rundescriptor_abrv) + '.txt'), 'a') as DataTa:
+        with open(("C:/Users/maste/Desktop/PyTorchSegmentation/TAData/" + str(rundescriptor_abrv) + '.txt'), 'a') as DataTa:
             DataTA.writelines(','.join([str(averageTime), str(averagePathTime), str(AvgLength), str(overallTime), str(cumulativePathingCalculationTime)]))
             #DataTA.writelines(','.join([operation, element, str(runksize), str(AcgLength), str(overallTime), str(cumulativePathingCalculationTime)]))
             DataTA.write("\n")
