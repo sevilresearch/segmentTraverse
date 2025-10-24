@@ -17,7 +17,7 @@ We used the PyCharm IDE to work on these files, and the steps will reference thi
 
    c. After you create these folders, you will need to edit the file paths in these python files. Below is a list of each line that needs to edited in each file, and what to change it to.
 
-         Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Users/maste/Desktop/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name"
+   Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Users/maste/Desktop/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name"
 
 4. 
      
