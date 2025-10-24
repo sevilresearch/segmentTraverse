@@ -13,11 +13,11 @@ We used the PyCharm IDE to work on these files, and the steps will reference thi
 
    a. Place DeepLabV3 file in ModelSaves and replace the Rellis3D folder with the Rellis3D zip folder found in the drive link
 
-   c. Create a folder within Segmentations titled tempExamples4 (If you change this, you will get errors asking you to correct file paths in lines 139 and 168).
+   b. Create a folder within Segmentations titled tempExamples4 (If you change this, you will get errors asking you to correct file paths in lines 139 and 168).
 
-   b. After you create these folders, you will need to edit the file paths in these python files. Below is a list of each line that needs to edited in each file, and what to change it to.
+   c. After you create these folders, you will need to edit the file paths in these python files. Below is a list of each line that needs to edited in each file, and what to change it to.
 
-      Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Users/maste/Desktop/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name"
+         Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Users/maste/Desktop/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name"
 
 4. 
      
