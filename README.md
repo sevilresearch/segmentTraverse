@@ -6,7 +6,7 @@ The steps to run these files and view the results yourself are listed below. The
 Version 1.0: 
 We used the PyCharm IDE to work on these files, and the steps will reference this IDE.
 
-1. Download Files from GitHub. Also download the Rellis3D dataset we used from this drive link:
+1. Download Files from GitHub. Also download the Rellis3D dataset and deeplab model we used from this drive link:
    https://drive.google.com/drive/folders/12t654a10328USRkx45VYmUrLJt4FuUid?usp=drive_link 
 
 2. You will need to create a folder called PyTorchSegmentation (Or another name you will remember). This folder should hold other folders titled ModelSaves, Segmentations, TAData, and Rellis3D. Avoid placing this in an existing system folder such as Users, as this can cause issues with permissions and access later in the code. We reccommend following this filepath: "C:\Python\PyTorchSegmentation\" where "C:" is replaced by your drive of choice and Python is a folder you create to hold the rest of these folders and files. 
