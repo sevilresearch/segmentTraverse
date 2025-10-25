@@ -11,7 +11,7 @@ import time
 from Rellis3DDatasetWithLidar import Rellis3D
 from LidarProcessing import LidarProcessor
 import floodfill
-from PathfindingAndImageProcessing import PathingProcessor
+from PathingProcessing import PathingProcessor
 
 dataset = "Rellis3D"
 modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
