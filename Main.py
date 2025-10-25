@@ -247,7 +247,7 @@ for runksize in kvals:
 
             plt.imsave("MaxSafePathingImages/Seg" + str(imagesTested) + "-1.png", np.uint8(outputImage))
             plt.imsave("MaxSafePathingImages/Seg" + str(imagesTested) + "-4.png", np.uint8(pathingImage))
-            imagesTested += 1
+        imagesTested += 1
 
         overallTime = time.time() - overallStart
         #print(str(rundescriptor) + "w/" str(runksize) + "x" + str(runksize) + "Kernel")
