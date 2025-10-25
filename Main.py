@@ -14,8 +14,8 @@ import floodfill
 from PathfindingAndImageProcessing import PathingProcessor
 
 dataset = "Rellis3D"
-modelSavesPath = "C:/Users/maste/Desktop/PyTorchSegmentation/ModelSaves/"
-segmentationsPath = "C:/Users/maste/Destop/PyTorchSegmentation/Segmentations/"
+modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
+segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
 imageSize = (1200, 1920)
 imageResize = (640, 1024)
 # imageResize = (256, 512)
@@ -45,7 +45,7 @@ numClasses = 0
 testDataset = None
 
 if dataset == "Rellis3D":
-    datasetPath = "C:/User/maste/Desktop/PyTorchSegmentation/Rellis3D/"
+    datasetPath = "C:/Python/PyTorchSegmentation/Rellis3D/"
     numClasses = 19
     testDataset = Rellis3D(datasetPath, split = "val",
                            transform=normalizeTransform, target_transform=resizeTransform)
@@ -113,6 +113,7 @@ for runksize in kvals:
         traversabilityLookupTable.append([0, 0, 0])
 
     overallStart = time.time()
+
     for index, testBatch, targetBatch, pointCloud, transformType in testDataLoader:
         individualStart = time.time()
         if(imagesTested % 20) == 0:
@@ -165,14 +166,14 @@ for runksize in kvals:
 
         traversabilityImage = outputImage
         outputImage = cv2.LUT(outputImage, np.array([classColorLookupTable]))
-        plt.imsave(segmentationsPath + "tempExample4/Seg" + str(imagesTested) + " k" + str(runksize) + "tempExamples4/Seg" + str(imagesTested) + " k" + str(runksize) + "PRE3.png", np.uint8(outputImage))
+        plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + " k" + str(runksize) + "-PRE3.png", np.uint8(outputImage))
 
         traversabilityImage = cv2.LUT(traversabilityImage, np.array([traversabilityLookupTable]))
         #plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + " k" + str(runksize) + "-PRE4.png", np.uint8(traversabilityImage))
         traversabilityImage = cv2.cvtColor(np.uint8(traversabilityImage), cv2.COLOR_RGB2GRAY)
         # plt.imsave(segmentationsPath+ "tempExamples4/Seg" + str(imagesTested) + " k" + str(runksize) + "-G.png", np.uint8(traversabilityImage))
         traversabilityImage = cv2.threshold(traversabilityImage, 1, 1, cv2.THRESH_BINARY)[1]
-        plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + " k" + str(runksize) + "-T.png", np.uint8(traversabilityImage))
+        plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + "k" + str(runksize) + "-T.png", np.uint8(traversabilityImage))
 
         print(imagesTested)
 
@@ -224,13 +225,13 @@ for runksize in kvals:
             cumulativePathingCalculationTime += time.time() - pathingStart
             totalPathLength += pathLength
             totalNumPaths += numPaths
-            with open(('C:/Users/maste/Desktop/PyTorchSegmentation/TAData/' + str(rundescriptor_abrv) + '.txt'), 'a') as DataTA:
+            with open(('C:/Python/PyTorchSegmentation/TAData/' + str(rundescriptor_abrv) + '.txt'), 'a') as DataTA:
                 DataTA.writelines(','.join([str(imagesTestedName), str(pathLength), str(individualTime), str(individualPathTime)]))
                 #DataTA.writelines('.join([operation, element, str(runksize), str(AvgLength), str(overallTime), tr(cumulativePathingCalculationTime)]))
                 DataTA.write('\n')
 
-            plt.imsave(segmentationsPath + "AStarPathingImages/Seg_" + str(imagesTestedName) + "_" + str(imagesTested) + " k" + str(runksize) + "-out1.png", np.uint8(outputImage))
-            plt.imsave(segmentationsPath + "AStarPathingImages/Seg_" + str(imagesTestedName) + "_" + str(imagesTested) + " k" + str(runksize) + "-out3.png", np.int8(pathingImage))
+            plt.imsave(segmentationsPath + "AStarPathingImages/Seg_" + str(imagesTestedName) + "_" + str(imagesTested) + "k" + str(runksize) + "-out1.png", np.uint8(outputImage))
+            plt.imsave(segmentationsPath + "AStarPathingImages/Seg_" + str(imagesTestedName) + "_" + str(imagesTested) + "k" + str(runksize) + "-out3.png", np.int8(pathingImage))
 
             # if index in [0, 20, 40, 60, 80, 100, 120]:
             # plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + "-3.png", np.uint8(pathingImage))
@@ -262,7 +263,7 @@ for runksize in kvals:
         averageTime = overallTime / (imagesTested + 1)
         averagePathTime = cumulativePathingCalculationTime / (imagesTested + 1)
 
-        with open(("C:/Users/maste/Desktop/PyTorchSegmentation/TAData/" + str(rundescriptor_abrv) + '.txt'), 'a') as DataTa:
+        with open(("C:/Python/PyTorchSegmentation/TAData/" + str(rundescriptor_abrv) + '.txt'), 'a') as DataTA:
             DataTA.writelines(','.join([str(averageTime), str(averagePathTime), str(AvgLength), str(overallTime), str(cumulativePathingCalculationTime)]))
             #DataTA.writelines(','.join([operation, element, str(runksize), str(AcgLength), str(overallTime), str(cumulativePathingCalculationTime)]))
             DataTA.write("\n")

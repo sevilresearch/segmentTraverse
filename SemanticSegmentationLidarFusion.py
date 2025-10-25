@@ -14,8 +14,8 @@ from PathingProcessing import PathingProcessor
 
 dataset = "Rellis3D"
 
-modelSavesPath = "C:/Users/maste/Desktop/PyTorchSegmentation/ModelSaves/"
-segmentationsPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Segmentations/"
+modelSavesPath = "C:/Users/maste/OneDrive/Desktop/PyTorchSegmentation/ModelSaves/"
+segmentationsPath = "C:/Users/maste/OneDrive/Desktop/PyTorchSegmentation/Segmentations/"
 imageSize = (1200, 1920)
 imageResize = (512, 1024)
 #imageResize = (256, 512)
@@ -25,8 +25,8 @@ imageResize = (512, 1024)
 pathingType = "AStar"
 #pathingType = "MaxSafe"
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-#device = torch.device("cpu")
+#device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device("cpu")
 
 #TODO Fix normalization
 resizeTransform = transforms.Compose([
@@ -46,7 +46,7 @@ numClasses = 0
 testDataset = None
 
 if dataset == "Rellis3D":
-    datasetPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Datasets/Rellis3D/"
+    datasetPath = "C:/Users/maste/OneDrive/Desktop/PyTorchSegmentation/Rellis3D/"
     numClasses = 19
     testDataset = Rellis3D(datasetPath, split="val", transform=normalizeTransform, target_transform=resizeTransform)
 
@@ -59,7 +59,7 @@ testDataLoader = torch.utils.data.DataLoader(testDataset, batch_size=1, sampler=
 
 segmentationModel = models.segmentation.deeplabv3_resnet101(pretrained=True)
 segmentationModel.classifier = DeepLabHead(2048, numClasses)
-segmentationModel.load_state_dict(torch.load(modelSavesPath + "DeeplabV3" + dataset + "-6-0.7544873356819153.pth"))
+segmentationModel.load_state_dict(torch.load(modelSavesPath + "DeeplabV3" + dataset + "-6-0.7544873356819153.pth", map_location= "cpu"))
 segmentationModel.eval()
 segmentationModel.to(device)
 
