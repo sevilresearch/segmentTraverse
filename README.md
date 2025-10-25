@@ -3,7 +3,7 @@ This is the repository for the UWF Sevil Research Group's Traversability Assessm
 Our goal is to segment an image of an outdoor off road location into traversable and non-traversable surfaces. Then, the system will plan a viable path through the area and the platform will execute the path.
 The steps to run these files and view the results yourself are listed below. These are subject to change as research progresses.
 
-Version 1.0: 
+Version 0.1: 
 We used the PyCharm IDE to work on this project, and the steps will reference this IDE.
 
 1. Download Files from GitHub. Also download the Rellis3D dataset and deeplab model we used from this drive link:
