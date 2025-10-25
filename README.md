@@ -21,7 +21,7 @@ We used the PyCharm IDE to work on this project, and the steps will reference th
 
 3. After these files are created, you will need to ensure that each of the libraries included at the top of the file are installed. If you are using PyCharm and they arent installed, you can click the error on the uninstalled reference and select "Install library".
 
-Once each of these steps is completed, your Main.py will be ready to run.
+Once each of these steps is completed, your Main.py will be ready to run. This is currently set up to run AStar path planning, and you will find the path results in the AStarPathingImages folder created above after running. The segmentation images created can be found in the tempExamples Folder. 
 
 If you experience any issues or find an error, please email cxh1@students.uwf.edu with the subject line "Traversability Assessment Questions". 
      
