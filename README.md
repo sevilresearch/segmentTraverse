@@ -19,7 +19,7 @@ https://github.com/unmannedlab/RELLIS-3D/tree/main
 
    c. After you create these folders, you will need to edit the file paths in these python files. Below is a list of each line that needs to edited in each file, and what to change it to.
 
-      Important Note: We used our own images for testing and analysis, titled TestDataset. To use this folder, ensure that the filepath on line 49 in Main.py is correct after downloading this folder.
+      
 
    Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Python/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name", if you chose a different location than the reccomended one.
 
