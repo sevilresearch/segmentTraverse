@@ -16,9 +16,11 @@ https://github.com/unmannedlab/RELLIS-3D/tree/main
 
    c. After you create these folders, you will need to edit the file paths in these python files. Below is a list of each line that needs to edited in each file, and what to change it to.
 
+      Important Note: We used our own images for testing and analysis, titled TestDataset. To use this folder, ensure that the filepath on line 49 in Main.py is correct after downloading this folder.
+
    Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Python/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name", if you chose a different location than the reccomended one.
 
-3. After these files are created, you will need to ensure that each of the libraries included at the top of the file are installed. If you are using PyCharm and they arent installed, you can click the error on the uninstalled reference and select "Install library".
+2. After these files are created, you will need to ensure that each of the libraries included at the top of the file are installed. If you are using PyCharm and they arent installed, you can click the error on the uninstalled reference and select "Install library".
 
 Once each of these steps is completed, your Main.py will be ready to run. This is currently set up to run AStar path planning, and you will find the path results in the AStarPathingImages folder created above after running. The segmentation images created can be found in the tempExamples Folder. 
 
