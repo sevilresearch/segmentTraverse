@@ -25,6 +25,14 @@ https://github.com/unmannedlab/RELLIS-3D/tree/main
 
 Once each of these steps is completed, your Main.py will be ready to run. This is currently set up to run AStar path planning, and you will find the path results in the AStarPathingImages folder created above after running. The segmentation images created can be found in the tempExamples Folder. 
 
+
+Version 0.11:
+Added the ability to test your own images. 
+
+To use this, add a folder titled "TestImages" within the PyTorchSegmentation folder.
+
+Add a folder in TestImages titled "test". Place your images here, and change dataset to SelfTest on line 19 of Main.py. Make sure to comment out the other dataset line above it.
+
 If you experience any issues or find an error, please email cxh1@students.uwf.edu with the subject line "Traversability Assessment Questions". 
      
 
