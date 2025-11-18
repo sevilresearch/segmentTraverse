@@ -19,8 +19,6 @@ https://github.com/unmannedlab/RELLIS-3D/tree/main
 
    c. After you create these folders, you will need to edit the file paths in these python files. Below is a list of each line that needs to edited in each file, and what to change it to.
 
-      
-
    Main.py: edit lines 17, 18, 48, 227 and 265. Each of these have a portion that looks like "C:/Python/PyTorchSegmentation/Folder_name". Replace these with your path to the folder specified by "Folder_name", if you chose a different location than the reccomended one.
 
 2. After these files are created, you will need to ensure that each of the libraries included at the top of the file are installed. If you are using PyCharm and they arent installed, you can click the error on the uninstalled reference and select "Install library".
