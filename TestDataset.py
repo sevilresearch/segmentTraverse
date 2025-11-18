@@ -5,7 +5,8 @@ import numpy as np
 from PIL import Image
 
 
-class Rellis3D(Dataset):
+
+class TestData(Dataset):
     def __init__(self,
                  root: str,
                  split: str = "train",
@@ -16,39 +17,29 @@ class Rellis3D(Dataset):
         self.transform = transform
         self.target_transform = target_transform
         self.imagesList = []
-        self.annotationsList = []
-        self.lidarList = []
 
-        if (split != "train") and (split != "val") and (split != "test") and (split != "TestDataset"):
+
+        if (split != "train") and (split != "val") and (split != "test"):
             print("Error: split must be 'train', 'val', or 'test'")
             exit(0)
 
-        self.imagesPath = root + "Images/Images/" + split + "/"
-        self.annotationsPath = root + "Images/Annotations/" + split + "/"
-        self.lidarPath = root + "Lidar/Lidar/" + split + "/"
+        self.imagesPath = root + split + "/"
+
 
         imagesList = []
-        annotationsList = []
-        lidarList = []
+
 
         for imagePath in os.listdir(self.imagesPath):
             imagesList.append(imagePath)
 
-        for annotationPath in os.listdir(self.annotationsPath):
-            annotationsList.append(annotationPath)
 
-        for lidarPath in os.listdir(self.lidarPath):
-            lidarList.append(lidarPath)
 
         self.imagesList = imagesList
-        self.annotationsList = annotationsList
-        self.lidarList = lidarList
+
 
     def __getitem__(self, index):
         image = Image.open(self.imagesPath + self.imagesList[index]).convert('RGB')
-        target = Image.open(self.annotationsPath + self.annotationsList[index])
-        pointCloud = (np.fromfile(self.lidarPath + self.lidarList[index], dtype=np.float32).reshape(-1, 4))[:, :3]
-        transformType = self.lidarList[index].split("-")[0][4]
+        target = image
 
         #Remapping labels
         label_mapping = {0: 0,
@@ -90,7 +81,7 @@ class Rellis3D(Dataset):
         if self.target_transform is not None:
             remappedTarget = self.target_transform(remappedTarget)
 
-        return (index, image, remappedTarget, pointCloud, transformType)
+        return (image, remappedTarget)
 
     def __len__(self):
         return len(self.imagesList)

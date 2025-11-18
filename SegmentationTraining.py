@@ -12,7 +12,7 @@ from Rellis3DDataset import Rellis3D
 #dataset = "Cityscapes"
 dataset = "Rellis3D"
 
-modelSavesPath = "C:/Users/maste/Desktop/PyTorchSegmentation/ModelSaves/"
+modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
 
 #General params
 imageResize = (256, 512)
@@ -50,13 +50,13 @@ numClasses = 0
 trainDataset, validationDataset = None, None
 
 if dataset == "Cityscapes":
-    datasetPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Datasets/Cityscapes/"
+    datasetPath = "C:/Python/PyTorchSegmentation/Datasets/Cityscapes/"
     numClasses = 34
     trainDataset = datasets.Cityscapes(datasetPath, mode="fine", split="train", target_type="semantic", transform=normalizeTransform, target_transform=resizeTransform)
     validationDataset = datasets.Cityscapes(datasetPath, mode="fine", split="val", target_type="semantic", transform=normalizeTransform, target_transform=resizeTransform)
 
 elif dataset == "Rellis3D":
-    datasetPath = "C:/Users/maste/Desktop/PyTorchSegmentation/Datasets/Rellis3D/CameraImages/"
+    datasetPath = "C:/Python/PyTorchSegmentation/Rellis3D/Images/"
     numClasses = 19
     trainDataset = Rellis3D(datasetPath, split="train", transform=normalizeTransform, target_transform=resizeTransform)
     validationDataset = Rellis3D(datasetPath, split="val", transform=normalizeTransform, target_transform=resizeTransform)

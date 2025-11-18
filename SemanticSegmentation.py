@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 #dataset = "Cityscapes"
 dataset = "Rellis3D"
 
-modelSavesPath = "C:/Users/maste/OneDrive/Desktop/PyTorchSegmentation/ModelSaves/"
-segmentationsPath = "C:/Users/maste/OneDrive/Desktop/PyTorchSegmentation/Segmentations/"
+modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
+segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
 imageResize = (256, 512)
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

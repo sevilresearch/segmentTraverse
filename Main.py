@@ -9,11 +9,15 @@ import matplotlib.pyplot as plt
 import cv2
 import time
 from Rellis3DDatasetWithLidar import Rellis3D
+#from Rellis3DDataset import Rellis3D
+from TestDataset import TestData
 from LidarProcessing import LidarProcessor
 import floodfill
 from PathingProcessing import PathingProcessor
 
-dataset = "Rellis3D"
+#dataset = "Rellis3D"
+modelset = "Rellis3D"
+dataset = "SelfTest"
 modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
 segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
 imageSize = (1200, 1920)
@@ -49,6 +53,10 @@ if dataset == "Rellis3D":
     numClasses = 19
     testDataset = Rellis3D(datasetPath, split = "val",
                            transform=normalizeTransform, target_transform=resizeTransform)
+elif dataset == "SelfTest":
+    datasetPath = "C:/Python/PyTorchSegmentation/TestImages/"
+    numClasses = 19
+    testDataset = TestData(datasetPath, split = "test",transform=normalizeTransform, target_transform=resizeTransform)
 else:
     print("Error: Please define a valid dataset")
     exit(0)
@@ -59,7 +67,7 @@ testDataLoader = torch.utils.data.DataLoader(testDataset, batch_size=1, sampler=
 segmentationModel = models.segmentation.deeplabv3_resnet101(pretrained=True)
 segmentationModel.classifier = DeepLabHead(2048, numClasses)
 segmentationModel.load_state_dict(
-    torch.load(modelSavesPath + "DeeplabV3" + dataset + "-6-0.7544873356819153.pth", map_location=torch.device('cpu'))
+    torch.load(modelSavesPath + "DeeplabV3" + modelset + "-6-0.7544873356819153.pth", map_location=torch.device('cpu'))
 )
 segmentationModel.eval()
 segmentationModel.to(device)
@@ -67,8 +75,8 @@ segmentationModel.to(device)
 kvals = [40]
 # kvals = [5, 25, 50, 55, 100, 150, 200]
 
-element = "Circle"
-operation = "Open"
+element = "Square"
+operation = "OpenClose"
 rundescriptor_abrv = element + operation
 # rundescriptor = "Morphological Opening w/ " + element + "Structuring Element and Imfill"
 
@@ -114,7 +122,8 @@ for runksize in kvals:
 
     overallStart = time.time()
 
-    for index, testBatch, targetBatch, pointCloud, transformType in testDataLoader:
+ # add index, testBatch, targetBatch, pointCloud, transformType back in front of targetBatch when using lidar
+    for testBatch, targetBatch in testDataLoader:
         individualStart = time.time()
         if(imagesTested % 20) == 0:
             print("Processing image " + str(imagesTested) + " out of " + str(numImages) + ".")
@@ -141,16 +150,16 @@ for runksize in kvals:
 
         # begin post-Rellis Segmentation Morphology Operations
         # morph open
-        # outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_OPEN, np.ones((30,30), np.uint8))
-        # outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_OPEN, np.ones((runksize, runksize), np.uint8))
-        # outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (runksize, runksize)))
-        #plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + "open k" + str(runksize) + str(rundescriptor_abrv) + ".png", np.uint8(outputImage))
+        outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_OPEN, np.ones((30,30), np.uint8))
+        outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_OPEN, np.ones((runksize, runksize), np.uint8))
+        outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (runksize, runksize)))
+        plt.imsave(segmentationsPath + "tempExamples4/Seg" + str(imagesTested) + "open k" + str(runksize) + str(rundescriptor_abrv) + ".png", np.uint8(outputImage))
 
         #morph close
-        # outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_CLOSE, np.ones((30,30), np.uint8))
-        # outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_CLOSE, np.ones((runksize, runksize), np.uint8))
-        # outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_CLOSE, cv2.getStructureElement(cv2.MORPH_ELLIPSE, (runksize, runksize)))
-        # plt.imsave(segmentationPath + "tempexamples4/Seg" + str(imagesTested) + "close k" + str(runksize) + str(rundescriptor+abrv) + ".png", np.uint8(outputImage))
+        outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_CLOSE, np.ones((30,30), np.uint8))
+        outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_CLOSE, np.ones((runksize, runksize), np.uint8))
+        outputImage = cv2.morphologyEx(outputImage, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (runksize, runksize)))
+        plt.imsave(segmentationsPath + "tempexamples4/Seg" + str(imagesTested) + "close k" + str(runksize) + str(rundescriptor_abrv) + ".png", np.uint8(outputImage))
 
         # imfill (after morphological operations)
         # outputImage = cv2.cvtColor(np.uint8(np.asarray(outputImage)), cv2.COLOR_GRAY2RGB)
@@ -268,8 +277,8 @@ for runksize in kvals:
             #DataTA.writelines(','.join([operation, element, str(runksize), str(AcgLength), str(overallTime), str(cumulativePathingCalculationTime)]))
             DataTA.write("\n")
 
-        #print("Total runtime was" + str(overallTime) + " Seconds.")
-        # # print("Average runtime per image was " + str(overallTime / (imagesTested+ 1)) + " seconds.")
-        # print("Total pathing runtime was " + str(cumulativePathingCalculationTime) + " seconds.")
-        #print("Average pathing runtime per image was " + str(cumulativePathingCalculationTime / (imagesTested + 1)) + " seconds.")
-
+        print("Total runtime was" + str(overallTime) + " Seconds.")
+        # print("Average runtime per image was " + str(overallTime / (imagesTested+ 1)) + " seconds.")
+        print("Total pathing runtime was " + str(cumulativePathingCalculationTime) + " seconds.")
+        print("Average pathing runtime per image was " + str(cumulativePathingCalculationTime / (imagesTested + 1)) + " seconds.")
+        print("Average path length per image was " + str(totalPathLength) + " pixels.")

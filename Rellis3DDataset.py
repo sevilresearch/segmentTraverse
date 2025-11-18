@@ -22,8 +22,8 @@ class Rellis3D(Dataset):
             print("Error: split must be 'train', 'val', or 'test'")
             exit(0)
 
-        self.imagesPath = root + "Images/" + split + "/"
-        self.annotationsPath = root + "Annotations/" + split + "/"
+        self.imagesPath = root + "Images/Images/" + split + "/"
+        self.annotationsPath = root + "Images/Annotations/" + split + "/"
 
         imagesList = []
         annotationsList = []
