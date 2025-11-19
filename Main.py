@@ -15,9 +15,9 @@ from LidarProcessing import LidarProcessor
 import floodfill
 from PathingProcessing import PathingProcessor
 
-#dataset = "Rellis3D"
+dataset = "Rellis3D"
+#dataset = "SelfTest"
 modelset = "Rellis3D"
-dataset = "SelfTest"
 modelSavesPath = "C:/Python/PyTorchSegmentation/ModelSaves/"
 segmentationsPath = "C:/Python/PyTorchSegmentation/Segmentations/"
 imageSize = (1200, 1920)
@@ -56,7 +56,7 @@ if dataset == "Rellis3D":
 elif dataset == "SelfTest":
     datasetPath = "C:/Python/PyTorchSegmentation/TestImages/"
     numClasses = 19
-    testDataset = TestData(datasetPath, split = "test",transform=normalizeTransform, target_transform=resizeTransform)
+    testDataset = TestData(datasetPath, split = "val",transform=normalizeTransform, target_transform=resizeTransform)
 else:
     print("Error: Please define a valid dataset")
     exit(0)
