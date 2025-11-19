@@ -31,7 +31,7 @@ Added the ability to test your own images.
 
 To use this, add a folder titled "TestImages" within the PyTorchSegmentation folder.
 
-Add a folder in TestImages titled "test". Place your images here, and change dataset to SelfTest on line 19 of Main.py. Make sure to comment out the other dataset line above it.
+Add a folder in TestImages titled "val". Place your images here, and change dataset to SelfTest on line 19 of Main.py. Make sure to comment out the other dataset line above it.
 
 If you experience any issues or find an error, please email cxh1@students.uwf.edu with the subject line "Traversability Assessment Questions". 
      
